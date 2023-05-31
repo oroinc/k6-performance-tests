@@ -39,7 +39,8 @@ If you use the Windows Package Manager, install the official packages from the k
 ### Debian/Ubuntu
 ```
 k6 run -e BASE_URL="https://example.com" -e USERNAME=AmandaRCole@example.org -e PASSWORD=AmandaRCole@example.org -e VU=1 -e DURATION=60s -e THRESHOLD_AVG=3000 scripts/warmingUpTheApp.js
-run -e BASE_URL="https://example.com" -e USERNAME=AmandaRCole@example.org -e PASSWORD=AmandaRCole@example.org -e VU=1 -e DURATION=600s -e THRESHOLD_AVG=850 scripts/storefrontTests.js
+k6 run -e BASE_URL="https://example.com" -e USERNAME=AmandaRCole@example.org -e PASSWORD=AmandaRCole@example.org -e VU=1 -e DURATION=600s -e THRESHOLD_AVG=850 scripts/storefrontTests.js
+k6 run -e BASE_URL="https://example.com" -e USERNAME=AmandaRCole@example.org -e PASSWORD=AmandaRCole@example.org -e SL_ID=2 -e SHIPPING_METHOD=fixed_product_5 -e PAYMENT_METHOD=payment_term_1 -e VU=1 -e DURATION=600s -e THRESHOLD_AVG=850 scripts/checkoutTest.js
 ```
 where:
 - BASE_URL - base URL of application
@@ -48,6 +49,9 @@ where:
 - VU - virtual users number in use
 - DURATION - test duration
 - THRESHOLD_AVG - pass/fail criteria for your test metrics
+- SL_ID - shopping list ID
+- SHIPPING_METHOD - shipping method, e.g. "fixed_product_5", "flat_rate_6"
+- PAYMENT_METHOD - payment method, e.g. "payment_term_1"
 
 
 ### Docker
@@ -55,4 +59,5 @@ where:
 ```
 docker run --rm --network host -u "$(id -u):$(id -g)" -v ${PWD}:/home/k6/performance -w /home/k6/performance grafana/k6:latest run -e BASE_URL="https://example.com" -e USERNAME=AmandaRCole@example.org -e PASSWORD=AmandaRCole@example.org -e VU=1 -e DURATION=60s -e THRESHOLD_AVG=3000 scripts/warmingUpTheApp.js
 docker run --rm --network host -u "$(id -u):$(id -g)" -v ${PWD}:/home/k6/performance -w /home/k6/performance grafana/k6:latest run -e BASE_URL="https://example.com" -e USERNAME=AmandaRCole@example.org -e PASSWORD=AmandaRCole@example.org -e VU=1 -e DURATION=600s -e THRESHOLD_AVG=850 scripts/storefrontTests.js
+docker run --rm --network host -u "$(id -u):$(id -g)" -v ${PWD}:/home/k6/performance -w /home/k6/performance grafana/k6:latest run -e BASE_URL="https://example.com" -e USERNAME=AmandaRCole@example.org -e PASSWORD=AmandaRCole@example.org -e SL_ID=2 -e SHIPPING_METHOD=fixed_product_5 -e PAYMENT_METHOD=payment_term_1 -e VU=1 -e DURATION=600s -e THRESHOLD_AVG=850 scripts/checkoutTest.js
 ```
