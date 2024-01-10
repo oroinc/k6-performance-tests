@@ -5,11 +5,11 @@ import {sleep, group, check} from 'k6';
 import {Rate, Trend} from 'k6/metrics';
 import {parseHTML} from 'k6/html';
 
-const TTFB_home_page = new Trend('Load Home Page for guest', true);
-const TTFB_product_search_page = new Trend('Load Product Search for guest', true);
-const TTFB_product_detail_page = new Trend('Load Product Detail Page(PDP) for guest', true);
-const TTFB_product_listing_page = new Trend('Load Product Listing Page(PLP) for guest', true);
-const TTFB_cms_page = new Trend('Load About Page (CMS) for guest', true);
+const TTFB_home_page = new Trend('load_home_page_for_guest', true);
+const TTFB_product_search_page = new Trend('load_product_search_for_guest', true);
+const TTFB_product_detail_page = new Trend('load_product_detail_page_for_guest', true);
+const TTFB_product_listing_page = new Trend('load_product_listing_page_for_guest', true);
+const TTFB_cms_page = new Trend('load_about_page_for_guest', true);
 
 export const BASE_URL = `${__ENV.BASE_URL}`;
 export const THRESHOLD_AVG = `${__ENV.THRESHOLD_AVG}`;
@@ -18,8 +18,7 @@ const checkFailureRate = new Rate('check_failure_rate');
 
 const headersDefaults = {
     'upgrade-insecure-requests': '1',
-    // eslint-disable-next-line max-len
-    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36',
+    'user-agent': 'GoogleStackdriverMonitoring',
     'accept': [
         'text/html',
         'application/xhtml+xml',
@@ -44,11 +43,11 @@ function formatResult(res) {
 
 export const options = {
     thresholds: {
-        'Load Home Page for guest': ['avg<' + THRESHOLD_AVG],
-        'Load Product Search for guest': ['avg<' + THRESHOLD_AVG],
-        'Load Product Detail Page(PDP) for guest': ['avg<' + THRESHOLD_AVG],
-        'Load Product Listing Page(PLP) for guest': ['avg<' + THRESHOLD_AVG],
-        'Load About Page (CMS) for guest': ['avg<' + THRESHOLD_AVG]
+        'load_home_page_for_guest': ['avg<' + THRESHOLD_AVG],
+        'load_product_search_for_guest': ['avg<' + THRESHOLD_AVG],
+        'load_product_detail_page_for_guest': ['avg<' + THRESHOLD_AVG],
+        'load_product_listing_page_for_guest': ['avg<' + THRESHOLD_AVG],
+        'load_about_page_for_guest': ['avg<' + THRESHOLD_AVG]
     },
     scenarios: {
         guest_user_test: {

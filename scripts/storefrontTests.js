@@ -7,28 +7,27 @@ import {parseHTML} from 'k6/html';
 import {htmlReport} from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 import {textSummary} from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
 
-const TTFB_home_page = new Trend('Load Home Page (guest user)', true);
-const TTFB_home_page_logged_in = new Trend('Load Home Page (logged in user)', true);
+const TTFB_home_page = new Trend('load_home_page_guest_user', true);
+const TTFB_home_page_logged_in = new Trend('load_home_page_logged_in_user', true);
 
-const TTFB_product_search_page = new Trend('Load Product Search Page (guest user)', true);
-const TTFB_product_search_page_logged_in = new Trend('Load Product Search Page (logged in user)', true);
+const TTFB_product_search_page = new Trend('load_product_search_page_guest_user', true);
+const TTFB_product_search_page_logged_in = new Trend('load_product_search_page_logged_in_user', true);
 
-const TTFB_product_detail_page = new Trend('Load Product Detail Page(PDP) (guest user)', true);
-const TTFB_product_detail_page_logged_in = new Trend('Load Product Detail Page(PDP) (logged in user)', true);
+const TTFB_product_detail_page = new Trend('load_product_detail_page_guest_user', true);
+const TTFB_product_detail_page_logged_in = new Trend('load_product_detail_page_logged_in_user', true);
 
-const TTFB_product_listing_page = new Trend('Load Product Listing Page(PLP) (guest user)', true);
-const TTFB_product_listing_page_logged_in = new Trend('Load Product Listing Page(PLP) (logged in user)', true);
+const TTFB_product_listing_page = new Trend('load_product_listing_page_guest_user', true);
+const TTFB_product_listing_page_logged_in = new Trend('load_product_listing_page_logged_in_user', true);
 
-const TTFB_cms_page = new Trend('Load About Page (CMS) (guest user)', true);
-const TTFB_login_page = new Trend('Load Login Page', true);
-const TTFB_authentication = new Trend('Authentication(POST request)', true);
-const TTFB_create_sl_widget = new Trend('Create SL Widget', true);
-const TTFB_create_sl_request = new Trend('Create SL Request(POST request)', true);
+const TTFB_cms_page = new Trend('load_about_page_cms_guest_user', true);
+const TTFB_login_page = new Trend('load_login_page', true);
+const TTFB_authentication = new Trend('authentication_post_request', true);
+const TTFB_create_sl_widget = new Trend('create_sl_widget', true);
+const TTFB_create_sl_request = new Trend('create_sl_request_post_request', true);
 
 const headersDefaults = {
     'upgrade-insecure-requests': '1',
-    // eslint-disable-next-line max-len
-    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36',
+    'user-agent': 'GoogleStackdriverMonitoring',
     'accept': [
         'text/html',
         'application/xhtml+xml',
@@ -63,19 +62,19 @@ const checkFailureRate = new Rate('check_failure_rate');
 
 export const options = {
     thresholds: {
-        'Load Home Page (guest user)': ['avg<' + THRESHOLD_AVG],
-        'Load Home Page (logged in user)': ['avg<' + THRESHOLD_AVG],
-        'Load Login Page': ['avg<' + THRESHOLD_AVG],
-        'Load Product Search Page (guest user)': ['avg<' + THRESHOLD_AVG],
-        'Load Product Search Page (logged in user)': ['avg<' + THRESHOLD_AVG],
-        'Load Product Detail Page(PDP) (guest user)': ['avg<' + THRESHOLD_AVG],
-        'Load Product Detail Page(PDP) (logged in user)': ['avg<' + THRESHOLD_AVG],
-        'Load Product Listing Page(PLP) (guest user)': ['avg<' + THRESHOLD_AVG],
-        'Load Product Listing Page(PLP) (logged in user)': ['avg<' + THRESHOLD_AVG],
-        'Load About Page (CMS) (guest user)': ['avg<' + THRESHOLD_AVG],
-        'Authentication(POST request)': ['avg<' + THRESHOLD_AVG],
-        'Create SL Widget': ['avg<' + THRESHOLD_AVG],
-        'Create SL Request(POST request)': ['avg<' + THRESHOLD_AVG]
+        'load_home_page_guest_user': ['avg<' + THRESHOLD_AVG],
+        'load_home_page_logged_in_user': ['avg<' + THRESHOLD_AVG],
+        'load_login_page': ['avg<' + THRESHOLD_AVG],
+        'load_product_search_page_guest_user': ['avg<' + THRESHOLD_AVG],
+        'load_product_search_page_logged_in_user': ['avg<' + THRESHOLD_AVG],
+        'load_product_detail_page_guest_user': ['avg<' + THRESHOLD_AVG],
+        'load_product_detail_page_logged_in_user': ['avg<' + THRESHOLD_AVG],
+        'load_product_listing_page_guest_user': ['avg<' + THRESHOLD_AVG],
+        'load_product_listing_page_logged_in_user': ['avg<' + THRESHOLD_AVG],
+        'load_about_page_cms_guest_user': ['avg<' + THRESHOLD_AVG],
+        'authentication_post_request': ['avg<' + THRESHOLD_AVG],
+        'create_sl_widget': ['avg<' + THRESHOLD_AVG],
+        'create_sl_request_post_request': ['avg<' + THRESHOLD_AVG]
     },
     scenarios: {
         guest_user_test: {

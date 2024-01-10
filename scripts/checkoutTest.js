@@ -8,18 +8,18 @@ import {FormData} from 'https://jslib.k6.io/formdata/0.0.2/index.js'
 import {htmlReport} from 'https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js';
 import {textSummary} from 'https://jslib.k6.io/k6-summary/0.0.1/index.js';
 
-let TTFB_home_page = new Trend("Load Home Page (guest user)", true);
-let TTFB_login_page = new Trend("Load Login Page", true);
-let TTFB_sl_page = new Trend("Load Shopping List Page", true);
-let TTFB_start_from_shoppinglist = new Trend("Load Start Checkout From Shopping List transition", true);
-let TTFB_billing_information_checkout_page = new Trend("Load Billing Information Step Page", true);
-let TTFB_get_country_region = new Trend("Load get US country regions request", true);
-let TTFB_shipping_information_checkout_page = new Trend("Load Shipping Information Step Page", true);
-let TTFB_continue_to_shipping_method_transition = new Trend("Load Shipping Method Step Page", true);
-let TTFB_continue_to_payment_transition = new Trend("Load Payment Method Step Page", true);
-let TTFB_continue_to_order_review_transition = new Trend("Load Order Review page", true);
-let TTFB_place_order_transition = new Trend("Load Place Order Transition", true);
-let TTFB_thank_you_page = new Trend("Load Thank You page", true);
+let TTFB_home_page = new Trend("load_home_page_guest_user", true);
+let TTFB_login_page = new Trend("load_login_page", true);
+let TTFB_sl_page = new Trend("load_shopping_list_page", true);
+let TTFB_start_from_shoppinglist = new Trend("load_start_checkout_from_shopping_list_transition", true);
+let TTFB_billing_information_checkout_page = new Trend("load_billing_information_step_page", true);
+let TTFB_get_country_region = new Trend("load_get_US_country_regions_request", true);
+let TTFB_shipping_information_checkout_page = new Trend("load_shipping_information_step_page", true);
+let TTFB_continue_to_shipping_method_transition = new Trend("load_shipping_method_step_page", true);
+let TTFB_continue_to_payment_transition = new Trend("load_payment_method_step_page", true);
+let TTFB_continue_to_order_review_transition = new Trend("load_order_review_page", true);
+let TTFB_place_order_transition = new Trend("load_place_order_transition", true);
+let TTFB_thank_you_page = new Trend("load_thank_you_page", true);
 
 let checkFailureRate = new Rate("check_failure_rate");
 
@@ -29,11 +29,11 @@ export const USERNAME = `${__ENV.USERNAME}`;
 export const PASSWORD = `${__ENV.PASSWORD}`;
 export const SHIPPING_METHOD = `${__ENV.SHIPPING_METHOD}`;
 export const PAYMENT_METHOD = `${__ENV.PAYMENT_METHOD}`;
+export const THRESHOLD_AVG = `${__ENV.THRESHOLD_AVG}`;
 
 const headersDefaults = {
     'upgrade-insecure-requests': '1',
-    // eslint-disable-next-line max-len
-    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36',
+    'user-agent': 'GoogleStackdriverMonitoring',
     'accept': [
         'text/html',
         'application/xhtml+xml',
@@ -49,18 +49,18 @@ const headersDefaults = {
 
 export let options = {
     thresholds: {
-        'Load Home Page (guest user)': ['avg<2000'],
-        'Load Login Page': ['avg<2000'],
-        'Load Shopping List Page': ['avg<2000'],
-        'Load Start Checkout From Shopping List transition': ['avg<2000'],
-        'Load Billing Information Step Page': ['avg<2000'],
-        'Load get US country regions request': ['avg<2000'],
-        'Load Shipping Information Step Page': ['avg<2000'],
-        'Load Shipping Method Step Page': ['avg<2000'],
-        'Load Payment Method Step Page': ['avg<2000'],
-        'Load Order Review page': ['avg<2000'],
-        'Load Place Order Transition': ['avg<2000'],
-        'Load Thank You page': ['avg<2000']
+        'load_home_page_guest_user': ['avg<' + THRESHOLD_AVG],
+        'load_login_page': ['avg<' + THRESHOLD_AVG],
+        'load_shopping_list_page': ['avg<' + THRESHOLD_AVG],
+        'load_start_checkout_from_shopping_list_transition': ['avg<' + THRESHOLD_AVG],
+        'load_billing_information_step_page': ['avg<' + THRESHOLD_AVG],
+        'load_get_US_country_regions_request': ['avg<' + THRESHOLD_AVG],
+        'load_shipping_information_step_page': ['avg<' + THRESHOLD_AVG],
+        'load_shipping_method_step_page': ['avg<' + THRESHOLD_AVG],
+        'load_payment_method_step_page': ['avg<' + THRESHOLD_AVG],
+        'load_order_review_page': ['avg<' + THRESHOLD_AVG],
+        'load_place_order_transition': ['avg<' + THRESHOLD_AVG],
+        'load_thank_you_page': ['avg<' + THRESHOLD_AVG]
     },
     scenarios: {
         checkout_test: {
@@ -108,7 +108,7 @@ export function getCSRFToken(BASE_URL) {
                 referer: BASE_URL,
                 "upgrade-insecure-requests": "1",
                 "user-agent":
-                    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
+                    "GoogleStackdriverMonitoring",
             },
         },
     );
@@ -167,7 +167,7 @@ export default function () {
                 accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
                 referer: BASE_URL,
                 "upgrade-insecure-requests": "1",
-                "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
+                "user-agent": "GoogleStackdriverMonitoring",
             },
         },);
 
@@ -201,7 +201,7 @@ export default function () {
                 "sec-fetch-dest": "empty",
                 "sec-fetch-mode": "cors",
                 "sec-fetch-site": "same-origin",
-                "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
+                "user-agent": "GoogleStackdriverMonitoring",
                 "x-csrf-header": csrfToken,
                 "x-oro-hash-navigation": "true",
                 "x-requested-with": "XMLHttpRequest",
@@ -221,7 +221,7 @@ export default function () {
                 accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
                 referer: BASE_URL,
                 "upgrade-insecure-requests": "1",
-                "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
+                "user-agent": "GoogleStackdriverMonitoring",
             },
         });
 
@@ -269,7 +269,7 @@ export default function () {
                     "sec-fetch-mode": "cors",
                     "sec-fetch-site": "same-origin",
                     "user-agent":
-                        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
+                        "GoogleStackdriverMonitoring",
                     "x-csrf-header": csrfToken,
                     "x-oro-hash-navigation": "true",
                     "x-requested-with": "XMLHttpRequest",
