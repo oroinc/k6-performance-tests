@@ -143,7 +143,7 @@ export default function () {
 
         let checkRes = check(response, {
             'status code is 200': response => response.status === 200,
-            'Homepage sign in link present': response => response.body.indexOf('Register') !== -1
+            'Homepage sign in link present': response => response.body.indexOf('Sign Up') !== -1
         });
 
         console.log('Home page opened with status code: ' + formatResult(response));
@@ -227,7 +227,7 @@ export default function () {
 
         check(response, {
             'status code is 200': (response) => response.status === 200,
-            '"Signed in as" text is present ': (response) => response.body.indexOf("Signed in as") !== -1
+            '"Amanda Cole" text is present ': (response) => response.body.indexOf("Amanda Cole") !== -1
         });
 
     });

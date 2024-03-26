@@ -134,7 +134,7 @@ export default function() {
 
         const checkRes = check(res, {
             'status code is 200': r => r.status === 200,
-            'Homepage sign in link present': r => r.body.indexOf('Register') !== -1
+            'Homepage sign in link present': r => r.body.indexOf('Sign Up') !== -1
         });
 
         console.log('Home page (guest user) opened with status code: ' + formatResult(res));
@@ -181,7 +181,7 @@ export default function() {
      *
      */
     group('Load Product Detail Page(PDP) (guest user)', function() {
-        const res = http.get(BASE_URL + '/product/view/13',
+        const res = http.get(BASE_URL + '/product/view/12',
             {
                 headers: Object.assign({}, headersDefaults)
             }
@@ -346,7 +346,7 @@ export default function() {
 
         check(res, {
             'status code is 200': res => res.status === 200,
-            '"Signed in as" text is present ': res => res.body.indexOf('Signed in as') !== -1
+            '"Amanda Cole" text is present ': res => res.body.indexOf('Amanda Cole') !== -1
         });
 
         TTFB_home_page_logged_in.add(res.timings.waiting, {ttfbURL: res.url});
@@ -461,7 +461,7 @@ export default function() {
      *
      */
     group('Load Product Detail Page(PDP) (logged in user)', function() {
-        const res = http.get(BASE_URL + '/product/view/13',
+        const res = http.get(BASE_URL + '/product/view/12',
             {
                 headers: Object.assign({}, headersDefaults)
             }

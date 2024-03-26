@@ -75,7 +75,7 @@ export default function() {
 
         const checkRes = check(res, {
             'status code is 200': r => r.status === 200,
-            'Homepage sign in link present': r => r.body.indexOf('Register') !== -1
+            'Homepage sign in link present': r => r.body.indexOf('Sign Up') !== -1
         });
 
         console.log('Home page opened with status code: ' + formatResult(res));
@@ -119,7 +119,7 @@ export default function() {
      *
      */
     group('Load Product Detail Page(PDP) for guest', function() {
-        const res = http.get(BASE_URL + '/product/view/62',
+        const res = http.get(BASE_URL + '/product/view/61',
             {
                 headers: Object.assign({}, headersDefaults)
             }
