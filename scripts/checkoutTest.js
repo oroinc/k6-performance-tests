@@ -29,7 +29,7 @@ export const USERNAME = `${__ENV.USERNAME}`;
 export const PASSWORD = `${__ENV.PASSWORD}`;
 export const SHIPPING_METHOD = `${__ENV.SHIPPING_METHOD}`;
 export const PAYMENT_METHOD = `${__ENV.PAYMENT_METHOD}`;
-export const THRESHOLD_AVG = `${__ENV.THRESHOLD_AVG}`;
+export const THRESHOLD_95 = `${__ENV.THRESHOLD_95}`;
 
 const headersDefaults = {
     'upgrade-insecure-requests': '1',
@@ -49,18 +49,18 @@ const headersDefaults = {
 
 export let options = {
     thresholds: {
-        'load_home_page_guest_user': ['avg<' + THRESHOLD_AVG],
-        'load_login_page': ['avg<' + THRESHOLD_AVG],
-        'load_shopping_list_page': ['avg<' + THRESHOLD_AVG],
-        'load_start_checkout_from_shopping_list_transition': ['avg<' + THRESHOLD_AVG],
-        'load_billing_information_step_page': ['avg<' + THRESHOLD_AVG],
-        'load_get_US_country_regions_request': ['avg<' + THRESHOLD_AVG],
-        'load_shipping_information_step_page': ['avg<' + THRESHOLD_AVG],
-        'load_shipping_method_step_page': ['avg<' + THRESHOLD_AVG],
-        'load_payment_method_step_page': ['avg<' + THRESHOLD_AVG],
-        'load_order_review_page': ['avg<' + THRESHOLD_AVG],
-        'load_place_order_transition': ['avg<' + THRESHOLD_AVG],
-        'load_thank_you_page': ['avg<' + THRESHOLD_AVG]
+        'load_home_page_guest_user': ['p(95)<' + THRESHOLD_95],
+        'load_login_page': ['p(95)<' + THRESHOLD_95],
+        'load_shopping_list_page': ['p(95)<' + THRESHOLD_95],
+        'load_start_checkout_from_shopping_list_transition': ['p(95)<' + THRESHOLD_95],
+        'load_billing_information_step_page': ['p(95)<' + THRESHOLD_95],
+        'load_get_US_country_regions_request': ['p(95)<' + THRESHOLD_95],
+        'load_shipping_information_step_page': ['p(95)<' + THRESHOLD_95],
+        'load_shipping_method_step_page': ['p(95)<' + THRESHOLD_95],
+        'load_payment_method_step_page': ['p(95)<' + THRESHOLD_95],
+        'load_order_review_page': ['p(95)<' + THRESHOLD_95],
+        'load_place_order_transition': ['p(95)<' + THRESHOLD_95],
+        'load_thank_you_page': ['p(95)<' + THRESHOLD_95]
     },
     scenarios: {
         checkout_test: {
