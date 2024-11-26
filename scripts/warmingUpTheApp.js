@@ -12,7 +12,7 @@ const TTFB_product_listing_page = new Trend('load_product_listing_page_for_guest
 const TTFB_cms_page = new Trend('load_about_page_for_guest', true);
 
 export const BASE_URL = `${__ENV.BASE_URL}`;
-export const THRESHOLD_AVG = `${__ENV.THRESHOLD_AVG}`;
+export const THRESHOLD_95 = `${__ENV.THRESHOLD_95}`;
 
 const checkFailureRate = new Rate('check_failure_rate');
 
@@ -43,11 +43,11 @@ function formatResult(res) {
 
 export const options = {
     thresholds: {
-        'load_home_page_for_guest': ['avg<' + THRESHOLD_AVG],
-        'load_product_search_for_guest': ['avg<' + THRESHOLD_AVG],
-        'load_product_detail_page_for_guest': ['avg<' + THRESHOLD_AVG],
-        'load_product_listing_page_for_guest': ['avg<' + THRESHOLD_AVG],
-        'load_about_page_for_guest': ['avg<' + THRESHOLD_AVG]
+        'load_home_page_for_guest': ['p(95)<' + THRESHOLD_95],
+        'load_product_search_for_guest': ['p(95)<' + THRESHOLD_95],
+        'load_product_detail_page_for_guest': ['p(95)<' + THRESHOLD_95],
+        'load_product_listing_page_for_guest': ['p(95)<' + THRESHOLD_95],
+        'load_about_page_for_guest': ['p(95)<' + THRESHOLD_95]
     },
     scenarios: {
         guest_user_test: {

@@ -54,7 +54,7 @@ function formatResult(res) {
 }
 
 export const BASE_URL = `${__ENV.BASE_URL}`;
-export const THRESHOLD_AVG = `${__ENV.THRESHOLD_AVG}`;
+export const THRESHOLD_95 = `${__ENV.THRESHOLD_95}`;
 export const USERNAME = `${__ENV.USERNAME}`;
 export const PASSWORD = `${__ENV.PASSWORD}`;
 
@@ -62,19 +62,19 @@ const checkFailureRate = new Rate('check_failure_rate');
 
 export const options = {
     thresholds: {
-        'load_home_page_guest_user': ['avg<' + THRESHOLD_AVG],
-        'load_home_page_logged_in_user': ['avg<' + THRESHOLD_AVG],
-        'load_login_page': ['avg<' + THRESHOLD_AVG],
-        'load_product_search_page_guest_user': ['avg<' + THRESHOLD_AVG],
-        'load_product_search_page_logged_in_user': ['avg<' + THRESHOLD_AVG],
-        'load_product_detail_page_guest_user': ['avg<' + THRESHOLD_AVG],
-        'load_product_detail_page_logged_in_user': ['avg<' + THRESHOLD_AVG],
-        'load_product_listing_page_guest_user': ['avg<' + THRESHOLD_AVG],
-        'load_product_listing_page_logged_in_user': ['avg<' + THRESHOLD_AVG],
-        'load_about_page_cms_guest_user': ['avg<' + THRESHOLD_AVG],
-        'authentication_post_request': ['avg<' + THRESHOLD_AVG],
-        'create_sl_widget': ['avg<' + THRESHOLD_AVG],
-        'create_sl_request_post_request': ['avg<' + THRESHOLD_AVG]
+        'load_home_page_guest_user': ['p(95)<' + THRESHOLD_95],
+        'load_home_page_logged_in_user': ['p(95)<' + THRESHOLD_95],
+        'load_login_page': ['p(95)<' + THRESHOLD_95],
+        'load_product_search_page_guest_user': ['p(95)<' + THRESHOLD_95],
+        'load_product_search_page_logged_in_user': ['p(95)<' + THRESHOLD_95],
+        'load_product_detail_page_guest_user': ['p(95)<' + THRESHOLD_95],
+        'load_product_detail_page_logged_in_user': ['p(95)<' + THRESHOLD_95],
+        'load_product_listing_page_guest_user': ['p(95)<' + THRESHOLD_95],
+        'load_product_listing_page_logged_in_user': ['p(95)<' + THRESHOLD_95],
+        'load_about_page_cms_guest_user': ['p(95)<' + THRESHOLD_95],
+        'authentication_post_request': ['p(95)<' + THRESHOLD_95],
+        'create_sl_widget': ['p(95)<' + THRESHOLD_95],
+        'create_sl_request_post_request': ['p(95)<' + THRESHOLD_95]
     },
     scenarios: {
         guest_user_test: {
